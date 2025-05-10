@@ -2,6 +2,8 @@
 
 Este projeto é uma aplicação em Java que simula uma conta bancária simples, utilizando entrada de dados via terminal. O usuário pode criar sua conta, visualizar o saldo, fazer depósitos e saques.
 
+Atualização: O projeto recebeu um "update" e agora está Orientado a Objetos. Temos a classe Cliente, Conta, ContaCorrente e ContaPoupanca e com metodos para validar o tipo de conta, para sacar e depositar.
+
 ## 🧠 Objetivo
 
 O projeto foi desenvolvido como parte de um desafio com foco em praticar:
@@ -11,6 +13,7 @@ O projeto foi desenvolvido como parte de um desafio com foco em praticar:
 - Validação de entrada de dados
 - Formatação de saída no console
 - Lógica de fluxo de um sistema bancário básico
+- Orientação a Objetos e seus princípios como **encapsulamento**, **herança** e **polimorfismo**.
 
 ## 🚀 Funcionalidades
 
@@ -49,10 +52,25 @@ Operaçoes disponiveis:
 
 Digite a opção desejada:
 ```
+
+## 🗺️ Estrutura do projeto
+```
+.
+├── Main/
+│   └── Aplicacao.java      # Classe principal, com o código de execução e interação com o usuário
+├── Models/
+│   ├── Cliente.java        # Classe que representa um cliente
+│   ├── Conta.java          # Classe base para Conta Corrente e Conta Poupança
+│   ├── ContaCorrente.java  # Classe que representa uma conta corrente
+│   └── ContaPoupanca.java  # Classe que representa uma conta poupança
+└── README.md               # Este arquivo
+```
+
 ## 🛠️ Tecnologias utilizadas
 
 - Java 21
 - IntelliJ IDEA
+- POO (Programação Orientada a Objetos) - utilizando os princípios de POO, como **encapsulamento**, **herança** e **polimorfismo**.
 
 
 Feito com 💻 e ☕ por Gustavo Alves
