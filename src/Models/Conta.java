@@ -46,4 +46,12 @@ public class Conta {
     public double getSaldo() {
         return saldo;
     }
+
+    public static boolean verificarConta(String tipoDeConta){
+        if (!tipoDeConta.equalsIgnoreCase("Corrente") && !tipoDeConta.equalsIgnoreCase("Poupanca")){
+            return false;
+        }else {
+            return true;
+        }
+    }
 }

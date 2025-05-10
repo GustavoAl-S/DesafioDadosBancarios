@@ -1,8 +1,13 @@
 package Main;
 
 import Models.Cliente;
+import Models.Conta;
+import Models.ContaCorrente;
+import Models.ContaPoupanca;
 
 import java.util.Scanner;
+
+
 
 public class Aplicacao {
     public static class Main {
@@ -11,29 +16,35 @@ public class Aplicacao {
 
             System.out.println("Digite seu nome: ");
             String nomeDoCliente = sc.nextLine();
-            Cliente cliente1 = new Cliente(nomeDoCliente);
+            Cliente cliente = new Cliente(nomeDoCliente);
 
             // Repete até que seja inserido um valor valido
             String tipoDeConta;
+            Conta conta = null;
+
             do {
                 System.out.println("Digite o seu tipo de conta (Corrente/Poupanca)");
                 tipoDeConta = sc.nextLine();
 
-                // Verifica se a pessoa digitou uma conta "Corrente" ou "Poupanca", equalIgnoreCase ignora a diferença de palavras minusculas e maisusculas
-                if (!tipoDeConta.equalsIgnoreCase("Corrente") && !tipoDeConta.equalsIgnoreCase("Poupanca")){
+                // Verifica se a pessoa digitou uma conta "Corrente" ou "Poupanca"
+                if (Conta.verificarConta(tipoDeConta)){
+                    if (tipoDeConta.equalsIgnoreCase("Corrente")){
+                        conta = new ContaCorrente(cliente, 0);
+                    }
+                    if (tipoDeConta.equalsIgnoreCase("Poupanca")){
+                        conta = new ContaPoupanca(cliente, 0);
+                    }
+                } else {
                     System.out.println("Tipo de conta invalido. Escolha uma conta Corrente ou Poupanca.");
                 }
-            } while (!tipoDeConta.equalsIgnoreCase("Corrente") && !tipoDeConta.equalsIgnoreCase("Poupanca"));
+            } while (conta == null);
 
             // Faz a mesma verificação que a de cima, só que para verificar o deposito de um numero positivo
             double saldo;
             do {
                 System.out.println("Digite o valor do deposito inicial: ");
                 saldo = sc.nextDouble();
-                if (saldo <= 0 ){
-                    System.out.println("O valor do deposito inicial deve ser positivo.");
-                }
-            }while (saldo <= 0);
+            }while (!conta.depositar(saldo));
 
 
             String menu = """
@@ -44,7 +55,7 @@ public class Aplicacao {
                     Tipo de conta:  %s
                     Saldo inicial:  R$ %.2f
                     ___________________________
-                    """.formatted(nomeDoCliente, tipoDeConta, saldo);
+                    """.formatted(nomeDoCliente, tipoDeConta, conta.getSaldo());
             System.out.println(menu);
 
             String operacoes = """
@@ -67,31 +78,31 @@ public class Aplicacao {
                 // Eu preferi usar switch Case do que encadear if e elses, fica mais legivel e facil de entender.
                 switch (opcao) {
                     case 1:
-                        System.out.printf("Saldo Atual: R$ %.2f %n", saldo);
+                        System.out.printf("Saldo Atual: R$ %.2f %n", conta.getSaldo());
                         break;
                     case 2:
+
                         System.out.println("Digite o valor que deseja depositar: ");
                         double deposito = sc.nextDouble();
-                        while(deposito <= 0 ){
-                            System.out.println("O valor do deposito não pode ser negativo ou zero");
 
+                        while(!conta.depositar(deposito)){
                             System.out.println("Digite o valor que deseja depositar: ");
                             deposito = sc.nextDouble();
                         }
-                        saldo += deposito;
-                        System.out.printf("Deposito realizado! \n Novo saldo = %.2f %n", saldo);
+
+                        System.out.printf("Deposito realizado! \n Novo saldo = %.2f %n", conta.getSaldo());
                         break;
+
                     case 3:
                         System.out.println("Digite o valor que deseja sacar: ");
                         int saque = sc.nextInt();
-                        if (saque > saldo) {
-                            System.out.println("Operação invalida!");
+                        if (!conta.sacar(saque)) {
                             System.out.println("O valor que deseja sacar está indisponivel. Consulte seu saldo para verificar a quantidade disponivel.");
                         } else {
-                            saldo -= saque;
-                            System.out.printf("Saque realizado! \n Novo saldo = %.2f %n", saldo);
+                            System.out.printf("Saque realizado! \n Novo saldo = %.2f %n", conta.getSaldo());
                         }
                         break;
+
                     case 4:
                         System.out.println("Saindo...");
                         break;
