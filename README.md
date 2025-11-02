@@ -1,10 +1,10 @@
-# 💳 Simulador de Conta Bancária
+# Simulador de Conta Bancária
 
 Este projeto é uma aplicação em Java que simula uma conta bancária simples, utilizando entrada de dados via terminal. O usuário pode criar sua conta, visualizar o saldo, fazer depósitos e saques.
 
 Atualização: O projeto recebeu um "update" e agora está Orientado a Objetos. Temos a classe Cliente, Conta, ContaCorrente e ContaPoupanca e com metodos para validar o tipo de conta, para sacar e depositar.
 
-## 🧠 Objetivo
+## Objetivo
 
 O projeto foi desenvolvido como parte de um desafio com foco em praticar:
 
@@ -15,7 +15,7 @@ O projeto foi desenvolvido como parte de um desafio com foco em praticar:
 - Lógica de fluxo de um sistema bancário básico
 - Orientação a Objetos e seus princípios como **encapsulamento**, **herança** e **polimorfismo**.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 - Criar conta bancária (Corrente ou Poupança)
 - Definir saldo inicial com validação
@@ -24,7 +24,7 @@ O projeto foi desenvolvido como parte de um desafio com foco em praticar:
 - Realizar saques (com verificação de saldo)
 - Sair da aplicação
 
-## 📸 Exemplo de uso
+## Exemplo de uso
 
 ```text
 Digite seu nome: 
@@ -53,7 +53,7 @@ Operaçoes disponiveis:
 Digite a opção desejada:
 ```
 
-## 🗺️ Estrutura do projeto
+## Estrutura do projeto
 ```
 .
 ├── Main/
@@ -66,7 +66,7 @@ Digite a opção desejada:
 └── README.md               # Este arquivo
 ```
 
-## 🛠️ Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - Java 21
 - IntelliJ IDEA
